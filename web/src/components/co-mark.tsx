@@ -1,24 +1,16 @@
-import { instrumentSerif } from "@/lib/fonts";
+// JobScout logo mark — uses the actual logo image
+import Image from "next/image";
 
-// Brand mark — lowercase "co" on brand orange in Instrument Serif. Matches the
-// favicon (src/app/icon.tsx) and the career-ops-docs home one-for-one so the
-// app reads as a sibling. Dual meaning: "co" of career-ops AND "co" of
-// companies — the word the manifesto inverts ("…AI to choose companies").
 export function CoMark({ size = 28 }: { size?: number }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`${instrumentSerif.className} inline-flex shrink-0 items-center justify-center rounded-md bg-brand text-white`}
-      style={{
-        width: size,
-        height: size,
-        fontSize: Math.round(size * 0.78),
-        letterSpacing: "0.01em",
-        lineHeight: 1,
-        paddingBottom: Math.round(size * 0.08),
-      }}
-    >
-      co
-    </span>
+    <Image
+      src="/jobscout-logo.png"
+      alt="JobScout"
+      width={size * 3.2}
+      height={size}
+      className="shrink-0 object-contain"
+      style={{ height: size, width: "auto" }}
+      priority
+    />
   );
 }

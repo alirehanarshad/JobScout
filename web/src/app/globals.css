@@ -2,23 +2,25 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Design tokens — inherited from career-ops-docs. Brand burnt-orange #dd7627
-   (mode-invariant), zinc neutrals, light + dark (Fumadocs neutral values).
+   JobScout Design System — Premium slate-blue brand (#3d4654), modern
+   glassmorphism, vibrant accent gradients, and smooth micro-animations.
    ────────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-brand: hsl(26 73% 51%);
-  --color-brand-200: hsl(33 100% 60%); /* hover / lighter */
-  /* Near-black on the brand orange: 5.2:1 on brand, 8.3:1 on brand-200 hover
-     (white was 3.14:1, an AA fail in BOTH themes since the button is the same).
-     The brand orange itself is untouched — only what sits on top of it. */
-  --color-brand-foreground: hsl(24 30% 12%);
-  --color-brand-soft: hsl(26 73% 51% / 0.12);
-  --color-brand-secondary: #fc7744;
+  --color-brand: hsl(216 18% 28%);
+  --color-brand-200: hsl(216 22% 38%);
+  --color-brand-foreground: #ffffff;
+  --color-brand-soft: hsl(216 18% 28% / 0.10);
+  --color-brand-secondary: hsl(200 85% 55%);
+  --color-accent: hsl(200 85% 55%);
+  --color-accent-glow: hsl(200 85% 55% / 0.25);
+  --color-success: hsl(158 64% 46%);
+  --color-warning: hsl(38 92% 56%);
+  --color-danger: hsl(0 72% 55%);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 }
 
 /* Semantic surfaces reference runtime vars so they swap with the theme class. */
@@ -30,41 +32,41 @@
   --color-foreground: var(--fg);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
-  --color-landing: var(--landing); /* editorial olive (light) / cream (dark) — docs landing-foreground */
-  /* Brand as SMALL TEXT: the raw orange only passes AA in dark (4.95); in light
-     it's 2.6-3.1 on cream/white. brand-text darkens it for light and keeps the
-     raw brand in dark. Use for small text/badges; brand stays for accents,
-     surfaces, icons and large headings (≥24px passes at 3:1). */
+  --color-landing: var(--landing);
   --color-brand-text: var(--brand-text);
 }
 
 :root {
-  --bg: #f7f6f3; /* warm off-white (docs stone tone) */
+  --bg: #f8f9fb;
   --surface: #ffffff;
-  --surface-hover: #efeeea;
-  --border: hsl(40 9% 86%);
-  --fg: hsl(30 10% 11%); /* warm near-black, high legibility */
-  --muted: hsl(35 9% 34%); /* darker than before for readable body text */
-  --faint: hsl(35 7% 42%); /* AA: ~4.6:1 on #fff (was 50% ≈ 3.9:1, failed small text) */
-  --landing: #59592a; /* olive editorial headline */
-  --brand-text: hsl(26 80% 36%); /* darkened brand for small text: 5.5 white / 5.1 cream / 4.7 surface-hover */
-  --dot: 40 8% 42% / 0.09;
-  --pre-bg: #f2f1ed;
+  --surface-hover: #f0f2f5;
+  --border: hsl(216 20% 90%);
+  --fg: hsl(216 25% 11%);
+  --muted: hsl(216 12% 40%);
+  --faint: hsl(216 10% 52%);
+  --landing: hsl(216 22% 20%);
+  --brand-text: hsl(216 22% 28%);
+  --dot: 216 12% 50% / 0.06;
+  --pre-bg: #f2f4f7;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.45);
   color-scheme: light;
 }
 
 .dark {
-  --bg: #0a0a0a;
-  --surface: #161616;
-  --surface-hover: #232323;
-  --border: #262626;
-  --fg: #fafafa;
-  --muted: #a1a1aa;
-  --faint: #8b8b95; /* AA: ~4.6:1 on #161616 (was #71717a ≈ 3.7:1, failed small text) */
-  --landing: #e4e2d0; /* cream editorial headline */
-  --brand-text: hsl(26 73% 51%); /* raw brand already passes in dark (≥4.95 on bg/surface) */
-  --dot: 240 5% 65% / 0.10;
-  --pre-bg: #111111;
+  --bg: #0c0e14;
+  --surface: #141720;
+  --surface-hover: #1c2030;
+  --border: #252a3a;
+  --fg: #eef0f6;
+  --muted: #8b90a0;
+  --faint: #6b7082;
+  --landing: #d8dce8;
+  --brand-text: hsl(200 75% 60%);
+  --dot: 216 15% 55% / 0.08;
+  --pre-bg: #12151e;
+  --glass-bg: rgba(20, 23, 32, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.08);
   color-scheme: dark;
 }
 
@@ -88,14 +90,80 @@ html {
     background-image: radial-gradient(circle, hsl(var(--dot)) 1px, transparent 1px);
     background-size: 24px 24px;
   }
+  /* Glassmorphism card utility */
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  }
+  /* Gradient text utility */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(200 85% 55%), hsl(216 22% 38%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-brand {
+    background: linear-gradient(135deg, hsl(216 18% 28%), hsl(200 85% 55%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
-/* ── Animations ported from the docs home ───────────────────────────────── */
+/* ── Animations ─────────────────────────────────────────────────────────── */
 @keyframes fade-in-delayed {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in-delayed { animation: fade-in-delayed 700ms ease 200ms both; }
+.animate-fade-in-delayed { animation: fade-in-delayed 600ms ease 150ms both; }
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 500ms ease both; }
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-right { animation: slide-in-right 400ms ease both; }
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scale-in 350ms ease both; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(200 85% 55% / 0.3); }
+  50% { box-shadow: 0 0 20px 4px hsl(200 85% 55% / 0.15); }
+}
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, hsl(200 85% 55% / 0.08), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
 
 @keyframes cli-cursor-pulse {
   0%, 50% { opacity: 1; }
@@ -109,7 +177,7 @@ html {
 }
 .animate-terminal-popup { animation: terminal-popup-in 300ms ease both; }
 
-/* Worker-pill indeterminate progress bar — a brand sweep (hero aesthetic). */
+/* Worker-pill indeterminate progress bar */
 @keyframes job-progress {
   0% { transform: translateX(-110%); }
   100% { transform: translateX(320%); }
@@ -120,16 +188,22 @@ html {
   position: absolute;
   inset: 0 auto 0 0;
   width: 35%;
-  background: linear-gradient(90deg, transparent, var(--color-brand), transparent);
+  background: linear-gradient(90deg, transparent, hsl(200 85% 55%), transparent);
   animation: job-progress 1.3s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cli-cursor,
   .animate-terminal-popup,
-  .animate-fade-in-delayed {
+  .animate-fade-in-delayed,
+  .animate-fade-in-up,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .animate-pulse-glow,
+  .animate-float {
     animation: none;
   }
+  .shimmer::after { animation: none; }
   .job-indeterminate::after { animation: none; width: 100%; opacity: 0.35; }
 }
 
@@ -145,24 +219,25 @@ html {
   letter-spacing: -0.01em;
   line-height: 1.25;
 }
-.report-prose h1 { font-family: var(--font-display); font-size: 1.7rem; margin: 2rem 0 0.75rem; }
+.report-prose h1 { font-family: var(--font-display); font-size: 1.7rem; margin: 2rem 0 0.75rem; font-weight: 700; }
 .report-prose h2 {
   font-family: var(--font-display);
   font-size: 1.3rem;
   margin: 2.25rem 0 0.75rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--border);
+  font-weight: 600;
 }
 .report-prose h3 { font-weight: 600; font-size: 1.05rem; margin: 1.6rem 0 0.5rem; }
 .report-prose h4 { font-weight: 600; font-size: 0.95rem; color: var(--muted); margin: 1.25rem 0 0.4rem; }
 .report-prose p { margin: 0.9rem 0; }
 .report-prose strong { color: var(--fg); font-weight: 600; }
-.report-prose a { color: var(--color-brand); text-decoration: none; }
+.report-prose a { color: hsl(200 85% 55%); text-decoration: none; }
 .report-prose a:hover { text-decoration: underline; }
 .report-prose code {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  color: var(--color-brand);
+  color: hsl(200 85% 55%);
   background: var(--surface-hover);
   padding: 0.1em 0.35em;
   border-radius: 0.3rem;
@@ -182,7 +257,7 @@ html {
 .report-prose li { margin: 0.35rem 0; }
 .report-prose li::marker { color: var(--faint); }
 .report-prose blockquote {
-  border-left: 3px solid var(--color-brand);
+  border-left: 3px solid hsl(200 85% 55%);
   padding-left: 1rem;
   margin: 1rem 0;
   color: var(--muted);

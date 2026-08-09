@@ -1,16 +1,14 @@
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Outfit, Instrument_Serif } from "next/font/google";
 
-// Body / UI — Inter, same as the career-ops-docs home (next/font/google,
-// self-hosted: no CLS, GDPR-safe).
-export const inter = Inter({
+// Body / UI — Outfit: a modern geometric sans-serif with personality.
+// Replaces Inter for the JobScout brand identity.
+export const inter = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-outfit",
   display: "swap",
 });
 
-// Editorial display — Instrument Serif. The home uses it for the hero display
-// copy and section headings (the "career-ops" editorial voice). Regular +
-// italic (pull-quotes) mirror the docs lib/fonts.ts.
+// Editorial display — Instrument Serif for pull-quotes and editorial moments.
 export const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",

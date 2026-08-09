@@ -2081,6 +2081,11 @@ async function main() {
     classifyTier = mod.classifyTier || mod.default;
   }
 
+  const maxAgeMinutesRaw = flagValue(args, '--max-age-minutes');
+  const maxAgeMinutes = maxAgeMinutesRaw != null
+    ? Number(maxAgeMinutesRaw)
+    : Number(config.max_posting_age_minutes || 0);
+
   const locationFilter = buildLocationFilter(config.location_filter);
   const postingAgeFilter = buildPostingAgeFilter(config.max_posting_age_days);
   const postedDateFilter = buildPostedDateFilter(effectiveAfter, postedBefore);
@@ -2274,6 +2279,15 @@ async function main() {
         if (!postingAgeFilter(job.postedAt)) {
           totalFilteredPostingAge++;
           continue;
+        }
+        if (Number.isFinite(maxAgeMinutes) && maxAgeMinutes > 0) {
+          const ageMins = typeof job.postingAgeMinutes === 'number'
+            ? job.postingAgeMinutes
+            : (typeof job.postedAt === 'number' ? Math.floor((Date.now() - job.postedAt) / 60000) : null);
+          if (ageMins !== null && ageMins > maxAgeMinutes) {
+            totalFilteredPostingAge++;
+            continue;
+          }
         }
         if (!postedDateFilter(job.postedAt)) {
           totalFilteredPostedDate++;
