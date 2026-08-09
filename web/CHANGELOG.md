@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.7.0](https://github.com/alirehanarshad/JobScout/compare/web-v0.6.0...web-v0.7.0) (2026-08-09)
+
+
+### Features
+
+* initialize JobScout repository with web dashboard, portal scanners, and updated README ([6178906](https://github.com/alirehanarshad/JobScout/commit/6178906c7f33842bd3d3b376975d789800353c11))
+* **providers:** add VDAB zero-auth provider ([#2084](https://github.com/alirehanarshad/JobScout/issues/2084)) ([6164384](https://github.com/alirehanarshad/JobScout/commit/6164384768fa47b7e164e2c36f53e86b2fd620cc))
+* **web:** Follow-up Tracker page with logging, history, and cadence settings ([#1422](https://github.com/alirehanarshad/JobScout/issues/1422)) ([6554de6](https://github.com/alirehanarshad/JobScout/commit/6554de6dcd28b95556e95ae220aebc719cc7a2a0))
+
+
+### Bug Fixes
+
+* **dashboard:** localize the hired status label and buffer split stream openers ([#2295](https://github.com/alirehanarshad/JobScout/issues/2295)) ([8f5d10d](https://github.com/alirehanarshad/JobScout/commit/8f5d10d6aa97438a4ac3908814456df5a8cf4083))
+* **deps:** update dependency next to v16.2.11 [security] ([#2198](https://github.com/alirehanarshad/JobScout/issues/2198)) ([b6d1c87](https://github.com/alirehanarshad/JobScout/commit/b6d1c871d985c278af51d26fa51ef09274c1076b))
+* **deps:** update npm dependencies (+ Dockerfile playwright pins, web lockfile sync) ([f154f59](https://github.com/alirehanarshad/JobScout/commit/f154f5938fed43a37ab5e57efee1c45d664cdc3f))
+* **web:** add Hired to the states.ts FALLBACK so the degraded path accepts it ([#2282](https://github.com/alirehanarshad/JobScout/issues/2282)) ([fd112c9](https://github.com/alirehanarshad/JobScout/commit/fd112c972d23cf0028e0411f36f67b1adf5520db))
+* **web:** label-aware pipeline.md reader — posted:/trust:/note: never misread as columns ([6c75d9a](https://github.com/alirehanarshad/JobScout/commit/6c75d9aa03c919803ffe6939b2ba6f1cf7238db6))
+* **web:** propagate the Hired terminal-success state across the whole dashboard ([#2250](https://github.com/alirehanarshad/JobScout/issues/2250)) ([29503dc](https://github.com/alirehanarshad/JobScout/commit/29503dca07c4f1725675299db48685565f159acb))
+* **web:** re-read states.yml when it changes instead of caching it for the process lifetime ([#2590](https://github.com/alirehanarshad/JobScout/issues/2590)) ([2a2e09e](https://github.com/alirehanarshad/JobScout/commit/2a2e09e61275e18a2331c1fee39bec3225f9f01c))
+* **web:** render PDFs from the backend instead of the spawned agent ([#2182](https://github.com/alirehanarshad/JobScout/issues/2182)) ([fef3ff2](https://github.com/alirehanarshad/JobScout/commit/fef3ff2e228cc14e55df4ced958e4b0aa630ec65))
+* **web:** resolve nested postcss and sharp advisories via overrides ([#2216](https://github.com/alirehanarshad/JobScout/issues/2216)) ([ec02af8](https://github.com/alirehanarshad/JobScout/commit/ec02af816abc81b500475f81bf1c2753727a1e79))
+* **web:** route Today's "See all N" link to the fresh-matches view ([#1790](https://github.com/alirehanarshad/JobScout/issues/1790)) ([5fcc727](https://github.com/alirehanarshad/JobScout/commit/5fcc72773b711be59f8212536df27ea6fd79f88d))
+
 ## [0.6.0](https://github.com/santifer/career-ops/compare/web-v0.5.0...web-v0.6.0) (2026-08-04)
 
 
